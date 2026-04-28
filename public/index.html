@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO: opis stranice za tražilice -->
+    <meta name="description" content="Baza filmova - pregledajte popis filmova, najnovije trejlere i informacije o omiljenim naslovima. Ocjene, žanrovi i godina izdanja.">
+    
+    <!-- SEO: ključne riječi vezane uz filmove -->
+    <meta name="keywords" content="filmovi, baza filmova, kino, trejleri, najbolji filmovi, ocjene filmova, filmska baza">
+    
+    <!-- SEO: autor stranice -->
+    <meta name="author" content="Web Programiranje">
+    
+    <!-- SEO: robots - indeksiraj i prati linkove -->
+    <meta name="robots" content="index, follow">
+    
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Baza Filmova | Popis i Trejleri</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>🎬 Baza Filmova</h1>
+        <p>Vaš vodič kroz svijet filma - popis filmova, ocjene i najnoviji trejleri</p>
+    </header>
+
+    <nav aria-label="Primarna navigacija">
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+			<li><a href="pages/grafikon.html">Graphs</a></li>
+			<li><a href="pages/slike.html">Images</a></li>
+            
+            <!-- Padajući izbornik -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Filmovi ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Filmovi</a></li>
+                    <li><a href="#">Akcija</a></li>
+                    <li><a href="#">Komedija</a></li>
+                    <li><a href="#">Drama</a></li>
+                    <li><a href="#">Horor</a></li>
+                    <li><a href="#">Animacija</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+		<a href="/slike">Galerija</a>
+
+
+        <div class="filter-panel">
+            <!-- Tekstualni filter -->
+             <!-- Tekstualni filter za minimalnu godinu -->
+            <div class="filter-group">
+                <label for="filter-year-text">Minimalna godina:</label>
+                <input type="text" id="filter-year-text" placeholder="npr. 1990">
+            </div>
+
+            <!-- Padajući izbornik -->
+            <div class="filter-group">
+                <label for="filter-genre">Žanr:</label>
+                <select id="filter-genre">
+                <option value="Svi">Svi</option>
+                <option value="Drama">Drama</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Biography">Biography</option>
+                <option value="Crime">Crime</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Adventure">Adventure</option>
+                </select>
+            </div>
+
+             <!-- Slider za minimalnu ocjenu -->
+            <div class="filter-group">
+                <label for="filter-rating">Minimalna ocjena: <span id="rating-value">5.0</span></label>
+                <input type="range" id="filter-rating" min="1" max="10" step="0.1" value="5">
+            </div>
+            <div class="filter-group">
+                <button id="filter-btn">Filtriraj</button>
+            </div>
+        </div>
+
+        <div class="main-wrapper">
+            <!--  filtriranje po žanru, državi, rasponu godina ili minimalnoj ocjeni -->
+            <!-- naslov filma, žanr, godina, trajanje, ocjena -->
+            <table id="filmovi-tablica">
+                <thead>
+                <tr>
+                <th>Naslov</th>
+                <th>Godina</th>
+                <th>Žanr</th>
+                <th>Trajanje(min)</th>
+                <th>Zemlja porijekla</th>
+                <th>Ocjena</th>
+                <th> </th>
+                ...
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                </table>
+
+            <button id="open-cart-btn">Košarica (<span id="cart-count">0</span>)</button>
+
+            <div id="cart-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span id="close-cart" class="close">&times;</span>
+                    <h2>Vaša košarica</h2>
+
+                    <table id="cart-table">
+                    <thead>
+                        <tr>
+                        <th>Naslov</th>
+                        <th>Godina</th>
+                        <th>Žanr</th>
+                        <th>Ukloni</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    </table>
+
+                    <button id="confirm-cart-btn" class="confirm-btn">Potvrdi posudbu</button>
+                    <p id="cart-message" class="success-message"></p>
+                </div>
+                </div>
+
+
+
+            <!-- Glavna sekcija s opisom baze filmova -->
+            <section aria-labelledby="glavna-sekcija">
+                <h2 id="glavna-sekcija">🎞️ O našoj bazi filmova</h2>
+                <p>Naša baza filmova sadrži podatke o različitim filmskim naslovima iz cijelog svijeta. Svaki film donosi podatke o godini izdanja, žanru, trajanju, državi porijekla i ocjeni.</p>
+                <p>Baza se kontinuirano ažurira novim naslovima. Cilj nam je pružiti korisnicima što potpuniju informaciju o filmovima koje žele pogledati.</p>
+            </section>
+
+            <!-- Article s novostima iz svijeta filma -->
+            <article aria-labelledby="vijesti">
+                <h2 id="vijesti">📰 Novosti iz svijeta filma</h2>
+                <p><strong>Novi filmovi u kinima:</strong> Ovaj tjedan u kina stižu dva nova hita - akcijski spektakl "Noćna misija" i romantična komedija "Ljubav na prvi klik".</p>
+                <p><strong>Filmski festival:</strong> 15. izdanje Festivala kratkog filma počinje sljedeći tjedan. U programu više od 50 filmova iz 20 zemalja.</p>
+                <p><strong>Top lista:</strong> Ovotjedni izbor najboljih filmova prema ocjenama publike vodi kultni komad "Some Like It Hot" s ocjenom 9.1.</p>
+            </article>
+        </div>
+			<div class="sidebars">
+		        <!-- Aside s filmom tjedna -->
+		        <aside aria-label="Film tjedna">
+		            <h3>🎬 Film tjedna</h3>
+		            <div class="video-container">
+		                <iframe 
+		                    width="100%" 
+		                    height="250" 
+		                    src="https://www.youtube.com/embed/YE7VzlLtp-4" 
+		                    title="Big Buck Bunny - kratki animirani film" 
+		                    frameborder="0" 
+		                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+		                    referrerpolicy="strict-origin-when-cross-origin" 
+		                    allowfullscreen>
+		                </iframe>
+		            </div>
+		            <p><strong>🎥 Big Buck Bunny</strong> - kratki animirani film o ljubaznom zecu koji se suočava s tri mala stvorenja.</p>
+		            <p>Trajanje: 10 minuta | Žanr: Animacija, Komedija</p>
+		            <p><a href="#">Više o filmu →</a></p>
+		        </aside>
+		        <!-- Aside s fotografijama koje se mijenjaju ovisno o veličini ekrana -->
+		        <aside aria-label="Galerija filmova">
+		            <h3>🎬 Filmske fotografije</h3>
+		    
+		            <figure class="film-figure">
+		                <div class="film-image-container" 
+		                    role="img" 
+		                    aria-label="Filmska kamera i oprema"
+		                    aria-describedby="image-description"></div>
+		                <figcaption id="image-description">
+		                    Filmska industrija - kamera na setu
+		                </figcaption>
+		            </figure>
+		            
+		            <p><strong>🎥 Filmska čarolija</strong> - Fotografija prikazuje filmsku opremu i atmosferu na setu.</p>
+		            <p><em>Prelazak mišem preko fotografije mijenja prozirnost i dodaje efekt zumiranja.</em></p>
+        </aside>
+			</div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025. Baza Filmova. Sva prava pridržana.</p>
+        <p>Kontakt: info@bazafilmova.hr | Tel: +385 1 123 4567</p>
+        <p><a href="#">O nama</a> | <a href="#">Uvjeti korištenja</a> | <a href="#">Kontakt</a></p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

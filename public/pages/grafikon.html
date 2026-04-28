@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO: opis stranice za tražilice -->
+    <meta name="description" content="Baza filmova - pregledajte popis filmova, najnovije trejlere i informacije o omiljenim naslovima. Ocjene, žanrovi i godina izdanja.">
+    
+    <!-- SEO: ključne riječi vezane uz filmove -->
+    <meta name="keywords" content="filmovi, baza filmova, kino, trejleri, najbolji filmovi, ocjene filmova, filmska baza">
+    
+    <!-- SEO: autor stranice -->
+    <meta name="author" content="Web Programiranje">
+    
+    <!-- SEO: robots - indeksiraj i prati linkove -->
+    <meta name="robots" content="index, follow">
+    
+    <link rel="stylesheet" href="../styles/style_grafikoni.css">
+    <title>Baza Filmova | Popis i Trejleri</title>
+</head>
+<body>
+    <header>
+        <h1>🎬 Baza Filmova</h1>
+        <p>Vaš vodič kroz svijet filma - popis filmova, ocjene i najnoviji trejleri</p>
+    </header>
+
+    <nav aria-label="Primarna navigacija">
+        <ul class="nav-menu">
+            <li><a href="../index.html">Home</a></li>
+			<li><a href="grafikon.html">Graphs</a></li>
+			<li><a href="slike.html">Images</a></li>
+            
+            <!-- Padajući izbornik -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Filmovi ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Svi filmovi</a></li>
+                    <li><a href="#">Akcija</a></li>
+                    <li><a href="#">Komedija</a></li>
+                    <li><a href="#">Drama</a></li>
+                    <li><a href="#">Horor</a></li>
+                    <li><a href="#">Animacija</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        
+        <!-- Sekcija s grafikonima -->
+        <section aria-labelledby="grafikoni">
+            <h2 id="grafikoni">📊 Statistika filmova</h2>
+            
+            <div class="charts-container">
+                <!-- Pie chart - omjer filmova po žanrovima -->
+                <div class="chart-card">
+                    <h3>Filmovi po žanrovima</h3>
+                    <div class="pie-chart-container">
+                        <div class="pie-chart">
+                            <div class="pie-segment comedy"></div>
+                            <div class="pie-segment drama"></div>
+                            <div class="pie-segment action"></div>
+                            <div class="pie-segment animation"></div>
+                            <div class="pie-segment horror"></div>
+                            <div class="pie-segment other"></div>
+                        </div>
+                    </div>
+                    <div class="pie-legend">
+                        <span class="legend-color comedy-color"></span> Komedija (5)
+                        <span class="legend-color drama-color"></span> Drama (5)
+                        <span class="legend-color action-color"></span> Akcija (3)
+                        <span class="legend-color animation-color"></span> Animacija (2)
+                        <span class="legend-color horror-color"></span> Horor (2)
+                        <span class="legend-color other-color"></span> Ostali (2)
+                    </div>
+                </div>
+                
+                <!-- Histogram - ocjene filmova -->
+                <div class="chart-card">
+                    <h3>Raspodjela ocjena filmova</h3>
+                    <div class="histogram">
+                        <div class="bar-container" data-info="1 film s ocjenom 9.0+">
+                            <div class="bar-label">9.0+</div>
+                            <div class="bar" style="height: 10px;"></div>
+                            <div class="bar-value">1</div>
+                        </div>
+                        <div class="bar-container" data-info="1 film s ocjenom 8.0-8.9">
+                            <div class="bar-label">8.0-8.9</div>
+                            <div class="bar" style="height: 10px;"></div>
+                            <div class="bar-value">1</div>
+                        </div>
+                        <div class="bar-container" data-info="3 filma s ocjenom 7.0-7.9">
+                            <div class="bar-label">7.0-7.9</div>
+                            <div class="bar" style="height: 30px;"></div>
+                            <div class="bar-value">3</div>
+                        </div>
+                        <div class="bar-container" data-info="3 filma s ocjenom 6.0-6.9">
+                            <div class="bar-label">6.0-6.9</div>
+                            <div class="bar" style="height: 30px;"></div>
+                            <div class="bar-value">3</div>
+                        </div>
+                        <div class="bar-container" data-info="6 filmova s ocjenom 5.0-5.9">
+                            <div class="bar-label">5.0-5.9</div>
+                            <div class="bar" style="height: 60px;"></div>
+                            <div class="bar-value">6</div>
+                        </div>
+                        <div class="bar-container" data-info="3 filma s ocjenom 4.0-4.9">
+                            <div class="bar-label">4.0-4.9</div>
+                            <div class="bar" style="height: 30px;"></div>
+                            <div class="bar-value">3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025. Baza Filmova. Sva prava pridržana.</p>
+        <p>Kontakt: info@bazafilmova.hr | Tel: +385 1 123 4567</p>
+        <p><a href="#">O nama</a> | <a href="#">Uvjeti korištenja</a> | <a href="#">Kontakt</a></p>
+    </footer>
+</body>
+</html>

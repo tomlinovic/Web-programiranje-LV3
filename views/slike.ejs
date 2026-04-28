@@ -1,0 +1,95 @@
+
+
+<!-- Slike u galeriji -->
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO: opis stranice za tražilice -->
+    <meta name="description" content="Baza filmova - pregledajte popis filmova, najnovije trejlere i informacije o omiljenim naslovima. Ocjene, žanrovi i godina izdanja.">
+    
+    <!-- SEO: ključne riječi vezane uz filmove -->
+    <meta name="keywords" content="filmovi, baza filmova, kino, trejleri, najbolji filmovi, ocjene filmova, filmska baza">
+    
+    <!-- SEO: autor stranice -->
+    <meta name="author" content="Web Programiranje">
+    
+    <!-- SEO: robots - indeksiraj i prati linkove -->
+    <meta name="robots" content="index, follow">
+    
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Baza Filmova | Popis i Trejleri</title>
+</head>
+<body>
+    <header>
+        <h1>🎬 Baza Filmova</h1>
+        <p>Vaš vodič kroz svijet filma - popis filmova, ocjene i najnoviji trejleri</p>
+    </header>
+
+    <nav aria-label="Primarna navigacija">
+        <ul class="nav-menu">
+            <li><a href="../index.html">Home</a></li>
+			<li><a href="grafikon.html">Graphs</a></li>
+			<li><a href="slike.html">Images</a></li>
+            
+            <!-- Padajući izbornik -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Filmovi ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Svi filmovi</a></li>
+                    <li><a href="#">Akcija</a></li>
+                    <li><a href="#">Komedija</a></li>
+                    <li><a href="#">Drama</a></li>
+                    <li><a href="#">Horor</a></li>
+                    <li><a href="#">Animacija</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        
+       
+
+        <h1>Galerija slika</h1>
+
+<section class="gallery">
+    <% images.forEach(image => { %>
+        <figure id="<%= image.id %>">
+            <a href="#<%= image.id %>">
+                <img src="<%= image.url %>" alt="<%= image.title %>">
+            </a>
+            <figcaption><%= image.title %></figcaption>
+        </figure>
+    <% }) %>
+</section>
+
+
+
+	
+
+
+
+
+
+    
+    </main>
+
+    <footer>
+        <p>&copy; 2025. Baza Filmova. Sva prava pridržana.</p>
+        <p>Kontakt: info@bazafilmova.hr | Tel: +385 1 123 4567</p>
+        <p><a href="#">O nama</a> | <a href="#">Uvjeti korištenja</a> | <a href="#">Kontakt</a></p>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
