@@ -73,15 +73,21 @@ function prikaziTablicu(filmovi, showAddButton = false) {
       <td>${film.duration}</td>
       <td>${film.country.join(', ')}</td>
       <td>${film.rating}</td>
-      <td>${showAddButton ? '<button class="add-cart-btn">Dodaj</button>' : ''}</td>
+      <td>
+        ${
+          showAddButton
+            ? `<button class="add-cart-btn" data-title="${film.title}">Dodaj</button>`
+            : ""
+        }
+      </td>
     `;
 
     tbody.appendChild(row);
 
     // Ako je filtrirano, dodaj event listener
     if (showAddButton) {
-      row.querySelector('.add-cart-btn').addEventListener('click', () => {
-        dodajUKosaricu(film);
+      row.querySelector('.add-cart-btn').addEventListener('click', (e) => {
+        dodajUKosaricu(film, e.target);
       });
     }
   }
@@ -101,19 +107,23 @@ document.getElementById('filter-btn').addEventListener('click', primijeniFiltere
 
 // ---------------- KOŠARICA ----------------
 
-// Dodavanje u košaricu
-function dodajUKosaricu(film) {
-  // Provjera postoji li već
+function dodajUKosaricu(film, buttonEl) {
   const postoji = kosarica.some(f => f.title === film.title);
-
-  if (postoji) {
-    alert("Ovaj film je već u košarici.");
-    return;
-  }
+  if (postoji) return;
 
   kosarica.push(film);
   document.getElementById('cart-count').textContent = kosarica.length;
+
+  // ili makni gumb:
+  // buttonEl.remove();
+
+  // ili ga onemogući i promijeni tekst:
+  buttonEl.disabled = true;
+  buttonEl.textContent = 'U košarici';
+  buttonEl.style.opacity = '0.6';
+  buttonEl.style.cursor = 'not-allowed';
 }
+
 
 
 
@@ -146,9 +156,22 @@ function prikaziKosaricu() {
   document.querySelectorAll('.remove-btn').forEach(btn => {
     btn.addEventListener('click', e => {
       const index = e.target.dataset.index;
+
+      // spremi film prije brisanja
+      const removedFilm = kosarica[index];
+
       kosarica.splice(index, 1);
       document.getElementById('cart-count').textContent = kosarica.length;
       prikaziKosaricu();
+
+      // ponovno omogući gumb za taj film
+      const button = document.querySelector(`button[data-title="${removedFilm.title}"]`);
+      if (button) {
+          button.disabled = false;
+          button.textContent = "Dodaj";
+          button.style.opacity = "1";
+          button.style.cursor = "pointer";
+      }
     });
   });
 }
@@ -191,4 +214,13 @@ document.getElementById('confirm-cart-btn').addEventListener('click', () => {
   kosarica = [];
   document.getElementById('cart-count').textContent = 0;
   prikaziKosaricu();
+
+  // 🔥 ponovno aktiviraj sve gumbe
+  document.querySelectorAll('.add-cart-btn').forEach(btn => {
+      btn.disabled = false;
+      btn.textContent = "Dodaj";
+      btn.style.opacity = "1";
+      btn.style.cursor = "pointer";
+  });
 });
+
